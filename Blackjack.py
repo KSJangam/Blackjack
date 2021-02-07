@@ -52,3 +52,10 @@ class player():
     def get_player_type(self):
         return self.player_type
 
+def startGame(numPlayers):
+    current_deck = deck()
+    players = []
+    for num in range(1, numPlayers+1):
+        players.append(player(input("Enter name for player {}".format(num))))
+    for num in range(0, num_players):
+        players[num].take_card(current_deck.deal())
