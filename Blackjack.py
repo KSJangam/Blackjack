@@ -49,13 +49,44 @@ class player():
             total+=num_aces
         if total>21:
             self.bust=True
+        return total
     def get_player_type(self):
         return self.player_type
-
+def checkDone(players):
+    playersLeft = 0
+    for player in players:
+        if not player.bust:
+            playersLeft = playersLeft+1
+    return playersLeft <= 1
+def findWinner(players):
+    if checkDone(players):
+        for player in players:
+            if not player.bust:
+                return player.name
 def startGame(numPlayers):
     current_deck = deck()
     players = []
     for num in range(1, numPlayers+1):
         players.append(player(input("Enter name for player {}".format(num))))
-    for num in range(0, num_players):
+    for num in range(0, numPlayers):
         players[num].take_card(current_deck.deal())
+        players[num].take_card(current_deck.deal())
+    for num in range(0, numPlayers):
+        if players[num].calculate_hand == 21:
+            print("BLACKJACK!")
+            print("{} wins!".format(players[num].name))
+            return players[num].name
+    for num in range(0, numPlayers):
+        if not players[num].bust
+            if input("hit or pass") = "hit":
+                players[num].take_card(current_deck.deal())
+                    if players[num].bust:
+                        print("BUST")
+    for num in range(0, numPlayers):
+        if players[num].calculate_hand = 21:
+            print("{} wins!".format(players[num].name))
+            return players[num].name
+        if checkDone(players):
+            winner = findWinner(players)
+            print("{} wins".format(winner))
+            return winner
